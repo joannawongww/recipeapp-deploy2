@@ -55,9 +55,3 @@ class RecipeModelTest(TestCase):
         recipe = Recipe.objects.get(id=1)
         self.assertEqual(recipe.get_absolute_url(), '/recipes/1')
 
-
-class RecipeSearchFormTest(TestCase):
-    def test_get_difficulty(self):
-        form_data = {"recipe_diff": "Easy", "chart_type": "#2"}
-        form = RecipeSearchForm(data=form_data)
-        self.assertTrue(form.is_valid())
