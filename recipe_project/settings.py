@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     # recipe_project-related apps
     'recipe',
     'user',
@@ -138,6 +139,21 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# AWS S3
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = 'AKIAQWBZO32LSI5YDWUO'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'jwww-recipe-bucket'
+AWS_S3_REGION_NAME = 'eu-central-1'
+
+MEDIA_URL = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
