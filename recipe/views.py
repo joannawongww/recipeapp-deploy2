@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView  # to display lists
 from .models import Recipe  # to access book model
 # to protect class-based view
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import RecipeSearchForm
+from .forms import RecipeSearchForm, CreateRecipeForm
 from .utils import get_recipename_from_id, get_chart
 
 import pandas as pd
@@ -28,6 +28,32 @@ class RecipeDetailView(LoginRequiredMixin, DetailView):
     model = Recipe
     template_name = 'recipe/recipe_detail.html'
 
+def create_view(request):
+    form = CreateRecipeForm(request.POST or None)
+    name = None
+    cooking_time = None
+    ingredients = None
+
+    if request.method == 'POST':
+        try:
+            recipe = Recipe.objects.create(
+                name = request.POST.get('name'),
+                cooking_time = request.POST.get('cooking_time'),
+                ingredients = request.POST.get('ingredients'),
+            )
+
+            recipe.save()
+        except:
+            print('Error in creating recipe.')
+    
+    context = {
+        'form': form,
+        'name': name,
+        'cooking_time': cooking_time,
+        'ingredients': ingredients
+    }
+
+    return render(request, 'recipe/recipe_create.html', context)
 
 def search_view(request):
     form = RecipeSearchForm(request.POST or None)

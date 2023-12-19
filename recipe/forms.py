@@ -22,3 +22,9 @@ DIFF__CHOICES = (
 class RecipeSearchForm(forms.Form):
     recipe_diff = forms.ChoiceField(choices=DIFF__CHOICES)
     chart_type = forms.ChoiceField(choices=CHART__CHOICES)
+
+class CreateRecipeForm(forms.Form):
+    name = forms.CharField(max_length=50)
+    cooking_time = forms.IntegerField(help_text='in mins')
+    ingredients = forms.CharField(max_length=300, help_text='Separate by a comma and a space')
+    
