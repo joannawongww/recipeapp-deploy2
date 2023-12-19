@@ -4,9 +4,9 @@
 
 A recipe app developed using Django framework, deployed on Heroku.
 
-<img src="/media/homepage.jpg" alt ="A screenshot of home page" width="200">
-<img src="/media/login.jpg" alt ="A screenshot of login page" width="200">
-<img src='/media/detail.jpg' alt ='A screenshot of recipe detail' width='200'>
+<img src="/media/homepage.jpg" alt ="A screenshot of home page" width="400">
+<img src="/media/login.jpg" alt ="A screenshot of login page" width="400">
+<img src='/media/detail.jpg' alt ='A screenshot of recipe detail' width='400'>
   
 Deployed app: https://obscure-reaches-05845-5c9fc5ba382e.herokuapp.com/
 
