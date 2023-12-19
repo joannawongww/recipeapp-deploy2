@@ -148,3 +148,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import dj_database_url
 db_from_env = dj_database_url.config(default='postgres://postgres:password@localhost:5432/test')
 DATABASES['default'].update(db_from_env)
+
+import django_heroku
+django_heroku.settings(locals())
