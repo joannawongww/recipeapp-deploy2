@@ -141,10 +141,26 @@ STATIC_ROOT = os.path.join(BASE_DIR, "live-static-files", "static-root")
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-MEDIA_URL = '/media/'
+# Django media settings for development only
+# MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT = os.path.join(BASE_DIR, "live-static-files", "media-root")
 
+AWS_ACCESS_KEY_ID = 'AKIAQWBZO32L5NX7UR76'
+AWS_SECRET_ACCESS_KEY = 'yrWUEoN7UrX5W39GsDMeuwIi2'
+
+AWS_STORAGE_BUCKET_NAME = 'recipeapp-bucket'
+AWS_S3_CUSTOM_DOMAIN = 'https://dyujkqvam7l5o.cloudfront.net'
+
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'mysite.storage_backends.MediaStorage' #the media storage configurations
+
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
